@@ -223,6 +223,9 @@ public class DefaultGroovyMethods extends DefaultGroovyMethodsSupport {
         final Closure<T> clonedClosure = (Closure<T>) closure.clone();
         clonedClosure.setResolveStrategy(Closure.DELEGATE_FIRST);
         clonedClosure.setDelegate(self);
+        if( self instanceof NullObject ) {
+            self = null ;
+        }
         return clonedClosure.call(self);
     }
 
